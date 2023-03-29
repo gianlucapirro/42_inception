@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./srcs/nginx
+    image: nginx
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_files:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - my_network
+
+  wordpress:
+    build: ./srcs/wordpress
+    command: tail -f /dev/null
+    image: wordpress
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpress_files:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+    networks:
+      - my_network
+
+  mariadb:
+    build: ./srcs/mariadb
+    image: mariadb
+    restart: always
+    user: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  wordpress_files:
+  mariadb_data:
