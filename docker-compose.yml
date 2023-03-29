@@ -1,46 +1,48 @@
 version: '3.8'
 
 services:
-  nginx:
-    build: ./srcs/nginx
-    image: nginx
-    restart: always
-    ports:
-      - "443:443"
-    volumes:
-      - wordpress_files:/var/www/html
-    depends_on:
-      - wordpress
-    networks:
-      - my_network
-
   wordpress:
     build: ./srcs/wordpress
-    command: tail -f /dev/null
-    image: wordpress
-    restart: always
     ports:
       - "9000:9000"
+    depends_on:
+      - mariadb
+    restart: always
+    environment:
+      WORDPRESS_DB_NAME: mariadb 
+      WORDPRESS_DB_USER: mariadbuser 
+      WORDPRESS_DB_PASSWORD: 'abc'
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_URL: localhost:9000
+      WORDPRESS_TITLE: deine_muti
+      WORDPRESS_ADMIN_USER: deinemuti
+      WORDPRESS_ADMIN_EMAIL: deinemuti@kokos.nl
+      WORDPRESS_ADMIN_PASS: 'Test123!'
+
     volumes:
       - wordpress_files:/var/www/html
-    environment:
-      - WORDPRESS_DB_HOST=mariadb
-      - WORDPRESS_DB_USER=${MYSQL_USER}
-      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
-      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
     networks:
       - my_network
 
   mariadb:
-    build: ./srcs/mariadb
+    build: 
+      context: ./srcs/mariadb
+      dockerfile: Dockerfile
+      args:
+        MYSQL_ROOT_PASSWORD: 'abc'
+        MYSQL_PASSWORD: 'abc'
+        MYSQL_DATABASE: mariadb
+        MYSQL_USER: mariadbuser
     image: mariadb
     restart: always
     user: mysql
+    ports:
+      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: 'abc'
+      MYSQL_PASSWORD: 'abc'
+      MYSQL_DATABASE: mariadb
+      MYSQL_USER: mariadbuser
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -50,5 +52,5 @@ networks:
   my_network:
 
 volumes:
-  wordpress_files:
   mariadb_data:
+  wordpress_files:
