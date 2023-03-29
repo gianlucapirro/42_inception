@@ -46,4 +46,11 @@ RUN chmod +x /setup.sh
 RUN mkdir -p /run/php/
 RUN touch /run/php/php7.3-fpm.pid
 
-CMD ["./setup.sh"]
+EXPOSE 9000
+
+WORKDIR /var/www/html
+
+RUN echo "ehho"
+
+CMD ["tail", "-f", "/dev/null"]
+# CMD ["bash", "/setup.sh"]

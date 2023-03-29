@@ -13,4 +13,6 @@ RUN mkdir /etc/nginx/certs && \
 RUN chmod 644 /etc/nginx/certs/server.crt
 RUN chmod 644 /etc/nginx/certs/server.key
 
+EXPOSE 443
+
 CMD ["nginx", "-g", "daemon off;"]

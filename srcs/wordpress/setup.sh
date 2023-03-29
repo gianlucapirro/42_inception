@@ -11,6 +11,5 @@ wp-cli core install \
 
 # /usr/sbin/php-fpm7.3 -F
 
-service php7.3-fpm start
-tail -f /dev/null
+php7.3-fpm -R && tail -f /dev/null
 
