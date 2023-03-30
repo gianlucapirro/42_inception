@@ -9,7 +9,5 @@ wp-cli core install \
 	--admin_email=${WORDPRESS_ADMIN_EMAIL} \
 	--path=/var/www/html
 
-# /usr/sbin/php-fpm7.3 -F
-
-php7.3-fpm -R && tail -f /dev/null
+php-fpm7.3 -F
 

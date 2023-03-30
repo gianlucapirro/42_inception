@@ -29,7 +29,7 @@ RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
 COPY ./wp-config.php /var/www/html/wp-config.php
 
 # Configure PHP-FPM
-COPY ./php-fpm.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY ./www.conf /etc/php/7.3/fpm/pool.d/
 
 
 WORKDIR /
@@ -38,6 +38,7 @@ RUN curl --insecure  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages
 RUN mv wp-cli.phar /usr/bin/wp-cli
 RUN chmod +x /usr/bin/wp-cli
 
+ARG AFDS
 
 COPY ./setup.sh /setup.sh
 RUN chmod +x /setup.sh
@@ -46,11 +47,10 @@ RUN chmod +x /setup.sh
 RUN mkdir -p /run/php/
 RUN touch /run/php/php7.3-fpm.pid
 
-EXPOSE 9000
 
 WORKDIR /var/www/html
 
-RUN echo "ehho"
+# RUN echo "ehho"
 
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
 # CMD ["bash", "/setup.sh"]

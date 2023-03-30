@@ -11,7 +11,7 @@ services:
       WORDPRESS_DB_USER: mariadbuser 
       WORDPRESS_DB_PASSWORD: 'abc'
       WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_URL: localhost:9000
+      WORDPRESS_URL: localhost:8080
       WORDPRESS_TITLE: deine_muti
       WORDPRESS_ADMIN_USER: deinemuti
       WORDPRESS_ADMIN_EMAIL: deinemuti@kokos.nl
@@ -20,6 +20,11 @@ services:
       - wordpress_files:/var/www/html
     networks:
       - my_network
+    working_dir: /var/www/html
+    # command: php-fpm7.3 -F
+    command: bash /setup.sh
+    # command: tail -f /dev/null
+
 
   mariadb:
     build: 
@@ -51,16 +56,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "443:443"
-      - "9000:9000"
+      - "8080:80"
     volumes:
-      - ./srcs/nginx/nginx.conf:/etc/nginx/sites-available/default
+      - ./srcs/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - wordpress_files:/var/www/html
     depends_on:
       - wordpress
     restart: always
     networks:
       - my_network
-    # command: "nginx -g daemon off;"
+    command: nginx -g "daemon off;"
 
 networks:
   my_network:
