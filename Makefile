@@ -11,4 +11,4 @@ down:
 	docker-compose down
 
 clean: down
-	docker volume rm my_project_mariadb_data my_project_wordpress_files
+	docker volume rm 42_inception_mariadb_data 42_inception_wordpress_files

@@ -38,8 +38,6 @@ RUN curl --insecure  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages
 RUN mv wp-cli.phar /usr/bin/wp-cli
 RUN chmod +x /usr/bin/wp-cli
 
-ARG AFDS
-
 COPY ./setup.sh /setup.sh
 RUN chmod +x /setup.sh
 
