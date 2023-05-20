@@ -11,4 +11,5 @@ down:
 	docker-compose down
 
 clean: down
-	docker volume rm 42_inception_mariadb_data 42_inception_wordpress_files
+	sudo docker stop $(docker ps -qa); sudo docker rm $(docker ps -qa); sudo docker rmi -f $(docker images -qa); sudo docker volume rm $(docker volume ls -q); sudo docker network rm $(docker network ls -q) 2> /dev/null
+
