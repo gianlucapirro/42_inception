@@ -16,7 +16,7 @@ RUN apt-get install -y \
         php7.3-zip \
         php7.3-opcache
 
-RUN apt-get install -y mysql-client 
+RUN apt-get install -y mariadb-client 
 
 # Download and extract WordPress
 RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
