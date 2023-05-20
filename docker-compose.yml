@@ -7,18 +7,18 @@ services:
       - mariadb
     restart: always
     environment:
-      WORDPRESS_DB_NAME: mariadb 
-      WORDPRESS_DB_USER: mariadbuser 
-      WORDPRESS_DB_PASSWORD: 'abc'
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_URL: jsiegers.42.fr
-      WORDPRESS_TITLE: deine_muti
-      WORDPRESS_ADMIN_USER: me 
-      WORDPRESS_ADMIN_EMAIL: me@mail.nl
-      WORDPRESS_ADMIN_PASS: 'pass'
-      WORDPRESS_EXTRA_USER: extra_user 
-      WORDPRESS_EXTRA_EMAIL: extra@mail.nl
-      WORDPRESS_EXTRA_PASS: 'pass'
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_URL: ${WORDPRESS_URL}
+      WORDPRESS_TITLE: ${WORDPRESS_TITLE}
+      WORDPRESS_ADMIN_USER: ${WORDPRESS_ADMIN_USER}
+      WORDPRESS_ADMIN_EMAIL: ${WORDPRESS_ADMIN_EMAIL}
+      WORDPRESS_ADMIN_PASS: ${WORDPRESS_ADMIN_PASS}
+      WORDPRESS_EXTRA_USER: ${WORDPRESS_EXTRA_USER}
+      WORDPRESS_EXTRA_EMAIL: ${WORDPRESS_EXTRA_EMAIL}
+      WORDPRESS_EXTRA_PASS: ${WORDPRESS_EXTRA_PASS}
     volumes:
       - wordpress_files:/var/www/html
     networks:
@@ -31,20 +31,20 @@ services:
       context: ./srcs/mariadb
       dockerfile: Dockerfile
       args:
-        MYSQL_ROOT_PASSWORD: 'root_pass'
-        MYSQL_PASSWORD: 'abc'
-        MYSQL_DATABASE: mariadb
-        MYSQL_USER: mariadbuser
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
     image: mariadb
     restart: always
     user: mysql
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: 'root_pass'
-      MYSQL_PASSWORD: 'abc'
-      MYSQL_DATABASE: mariadb
-      MYSQL_USER: mariadbuser
+      MYSQL_ROOT_PASSWORD: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_DATABASE}
+      MYSQL_DATABASE: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
