@@ -14,6 +14,7 @@ RUN apt-get update && \
         php7.3-curl \
         php7.3-zip \
         php7.3-opcache && \
+        mysql-client \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -26,7 +27,7 @@ RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
     chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
-COPY ./wp-config.php /var/www/html/wp-config.php
+# COPY ./wp-config.php /var/www/html/wp-config.php
 
 # Configure PHP-FPM
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/
