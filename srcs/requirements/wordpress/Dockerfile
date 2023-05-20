@@ -14,10 +14,11 @@ RUN apt-get install -y --no-install-recommends \
         php7.3-gd \
         php7.3-curl \
         php7.3-zip \
-        php7.3-opcache \
-        mysql-client &&\
+        php7.3-opcache && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install -y mysql-client 
 
 # Download and extract WordPress
 RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
