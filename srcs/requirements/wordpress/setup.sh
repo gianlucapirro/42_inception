@@ -4,7 +4,7 @@ wp-cli config create \
 	--dbname=${WORDPRESS_DB_NAME} \
 	--dbuser=${WORDPRESS_DB_USER} \
 	--dbpass=${WORDPRESS_DB_PASSWORD} \
-	--allow-root
+	--allow-root 2>/dev/null
 
 wp-cli core install \
 	--allow-root \
@@ -19,7 +19,7 @@ wp-cli user create \
     ${WORDPRESS_EXTRA_USER} \
     ${WORDPRESS_EXTRA_EMAIL} \
     --user_pass=${WORDPRESS_EXTRA_PASS} \
-    --allow-root &>/dev/null || true 
+    --allow-root 2>/dev/null || true 
 
 php-fpm7.3 -F
 
