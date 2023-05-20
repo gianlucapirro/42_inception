@@ -79,3 +79,6 @@ volumes:
       device: /home/jsiegers/data/wordpress
       o: bind
       type: none
+
+
+#TODO: remove passwords and stuff from wp-config.php
