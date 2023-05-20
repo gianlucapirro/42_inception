@@ -47,8 +47,3 @@ RUN touch /run/php/php7.3-fpm.pid
 
 
 WORKDIR /var/www/html
-
-# RUN echo "ehho"
-
-# CMD ["tail", "-f", "/dev/null"]
-# CMD ["bash", "/setup.sh"]

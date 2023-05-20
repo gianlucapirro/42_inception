@@ -25,7 +25,6 @@ services:
       - my_network
     working_dir: /var/www/html
     command: bash /setup.sh
-    # TODO: add all creds to env file
   mariadb:
     build: 
       context: ./srcs/mariadb
@@ -38,8 +37,6 @@ services:
     image: mariadb
     restart: always
     user: mysql
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_DATABASE}

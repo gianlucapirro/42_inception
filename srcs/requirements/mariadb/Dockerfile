@@ -33,12 +33,4 @@ EXPOSE 3306
 RUN mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/run/mysqld
 
-# RUN service mysql start
-# RUN echo "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
-# RUN mysql -u root -e  "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
-# RUN mysql -u root -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';"
-# RUN mysql -u root -e "FLUSH PRIVILEGES;"
-
-
-# CMD ["mysqld", "--default-authentication-plugin=mysql_native_password"]
 CMD ["mysqld", "--init-file=/init.sql"] 
