@@ -28,7 +28,6 @@ RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
     chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
-# COPY ./wp-config.php /var/www/html/wp-config.php
 
 # Configure PHP-FPM
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/

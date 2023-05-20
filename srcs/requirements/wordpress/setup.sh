@@ -13,13 +13,13 @@ wp-cli core install \
 	--admin_user=${WORDPRESS_ADMIN_USER} \
 	--admin_password=${WORDPRESS_ADMIN_PASS} \
 	--admin_email=${WORDPRESS_ADMIN_EMAIL} \
-	--path=/var/www/html
+	--path=/var/www/html 2> /dev/null
 
 wp-cli user create \
     ${WORDPRESS_EXTRA_USER} \
     ${WORDPRESS_EXTRA_EMAIL} \
     --user_pass=${WORDPRESS_EXTRA_PASS} \
-    --allow-root > /dev/null || true > /dev/null
+    --allow-root 2> /dev/null || true
 
 php-fpm7.3 -F
 
