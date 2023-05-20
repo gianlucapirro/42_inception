@@ -15,7 +15,7 @@ mariadb_login:
 
 
 clean: down
-	rm -rf /home/jsiegers/data/wordpress/*
-	rm -rf /home/jsiegers/data/mariadb/*
+	sudo rm -rf /home/jsiegers/data/wordpress/*
+	sudo rm -rf /home/jsiegers/data/mariadb/*
 	sudo docker stop $(shell sudo docker ps -qa); sudo docker rm $(shell sudo docker ps -qa); sudo docker rmi -f $(shell sudo docker images -qa); sudo docker volume rm $(shell sudo docker volume ls -q); sudo docker network rm $(shell sudo docker network ls -q) 2> /dev/null
 
