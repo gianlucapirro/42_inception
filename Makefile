@@ -1,18 +1,22 @@
+COMPOSE = docker-compose -f ./srcs/docker-compose.yml
+
 all:
-	sudo docker-compose build
+	sudo ${COMPOSE} build
 
 up:
-	sudo docker-compose up
+	sudo ${COMPOSE} up
 
 upb:
-	sudo docker-compose up --build
+	sudo ${COMPOSE} up --build
 
 down:
-	sudo docker-compose down
+	sudo ${COMPOSE} down
 
 mariadb_login:
 	mysql -u mariadbuser -pabc mariadb
 
+mariadb_root:
+	sudo ${COMPOSE} exec --user root mariadb /bin/bash
 
 clean: down
 	sudo rm -rf /home/jsiegers/data/wordpress/*
