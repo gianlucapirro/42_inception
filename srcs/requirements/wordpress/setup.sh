@@ -6,6 +6,14 @@ wp-cli config create \
 	--dbpass=${WORDPRESS_DB_PASSWORD} \
 	--allow-root
 
+wp-cli core install \
+	--allow-root \
+	--url=${WORDPRESS_URL} \
+	--title=${WORDPRESS_TITLE} \
+	--admin_user=${WORDPRESS_ADMIN_USER} \
+	--admin_password=${WORDPRESS_ADMIN_PASS} \
+	--admin_email=${WORDPRESS_ADMIN_EMAIL} \
+	--path=/var/www/html
 
 wp-cli user create \
     ${WORDPRESS_EXTRA_USER} \
