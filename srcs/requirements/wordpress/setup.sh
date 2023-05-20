@@ -19,7 +19,7 @@ wp-cli user create \
     ${WORDPRESS_EXTRA_USER} \
     ${WORDPRESS_EXTRA_EMAIL} \
     --user_pass=${WORDPRESS_EXTRA_PASS} \
-    --allow-root 2> /dev/null || true
+    --allow-root &>/dev/null || true &>/dev/null
 
 php-fpm7.3 -F
 
