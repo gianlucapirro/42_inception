@@ -14,6 +14,7 @@ RUN apt-get install -y \
         php7.3-gd \
         php7.3-curl \
         php7.3-zip \
+        sendmail \
         php7.3-opcache
 
 RUN apt-get install -y mariadb-client 
