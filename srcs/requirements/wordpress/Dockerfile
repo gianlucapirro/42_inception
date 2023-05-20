@@ -4,7 +4,7 @@ FROM debian:buster
 # Install necessary packages
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install -y \
         curl \
         php7.3-fpm \
         php7.3-mysql \
@@ -14,9 +14,7 @@ RUN apt-get install -y --no-install-recommends \
         php7.3-gd \
         php7.3-curl \
         php7.3-zip \
-        php7.3-opcache && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+        php7.3-opcache
 
 RUN apt-get install -y mysql-client 
 
