@@ -35,8 +35,6 @@ services:
         MYSQL_DATABASE: ${MYSQL_DATABASE}
         MYSQL_USER: ${MYSQL_USER}
     image: mariadb
-    ports:
-      - "3306:3306"
     restart: always
     user: mysql
     environment:
