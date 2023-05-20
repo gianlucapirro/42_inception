@@ -72,4 +72,14 @@ networks:
 
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      device: /home/jsiegers/data/mariadb
+      o: bind
+      type: none
   wordpress_files:
+    driver: local
+    driver_opts:
+      device: /home/jsiegers/data/wordpress
+      o: bind
+      type: none
