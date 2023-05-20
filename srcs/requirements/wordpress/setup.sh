@@ -1,5 +1,5 @@
 #!/bin/bash
-wp-cli core config
+wp-cli core config \
     --dbhost=${WORDPRESS_DB_HOST} \
 	--dbname=${WORDPRESS_DB_NAME} \
 	--dbuser=${WORDPRESS_DB_USER} \
