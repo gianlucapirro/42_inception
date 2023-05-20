@@ -1,4 +1,10 @@
 #!/bin/bash
+wp core config
+    --dbhost=${WORDPRESS_DB_HOST} \
+	--dbname=${WORDPRESS_DB_NAME} \
+	--dbuser=${WORDPRESS_DB_USER} \
+	--dbpass=${WORDPRESS_DB_PASSWORD} \
+	--allow-root
 
 wp-cli core install \
 	--allow-root \
