@@ -28,4 +28,5 @@ EXPOSE 3306
 RUN mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/run/mysqld
 
+
 CMD ["mysqld", "--init-file=/init.sql"] 
