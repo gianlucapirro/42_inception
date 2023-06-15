@@ -13,7 +13,7 @@ down:
 	sudo ${COMPOSE} down
 
 mariadb_login:
-	mysql -u mariadbuser -pabc mariadb
+	mysql -u mariadbuser -phAkd39fa1kF9 mariadb
 
 mariadb_root:
 	sudo ${COMPOSE} exec --user root mariadb /bin/bash
