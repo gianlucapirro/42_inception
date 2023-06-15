@@ -13,13 +13,13 @@ down:
 	sudo ${COMPOSE} down
 
 mariadb_login:
-	mysql -u mariadbuser -pabc mariadb
+	mysql -u mariadbuser -phAkd39fa1kF9 mariadb
 
 mariadb_root:
 	sudo ${COMPOSE} exec --user root mariadb /bin/bash
 
 clean: down
-	sudo rm -rf /home/jsiegers/data/wordpress/*
-	sudo rm -rf /home/jsiegers/data/mariadb/*
+	sudo rm -rf /home/gpirro/data/wordpress/*
+	sudo rm -rf /home/gpirro/data/mariadb/*
 	sudo docker stop $(shell sudo docker ps -qa); sudo docker rm $(shell sudo docker ps -qa); sudo docker rmi -f $(shell sudo docker images -qa); sudo docker volume rm $(shell sudo docker volume ls -q); sudo docker network rm $(shell sudo docker network ls -q) 2> /dev/null
 

@@ -6,7 +6,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir /etc/nginx/certs && \
-    openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/certs/server.key -out /etc/nginx/certs/server.crt -days 3650 -nodes -subj '/CN=jsiegers.42.fr'
+    openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/certs/server.key -out /etc/nginx/certs/server.crt -days 3650 -nodes -subj '/CN=gpirro.42.fr'
 
 RUN chmod 644 /etc/nginx/certs/server.crt
 RUN chmod 644 /etc/nginx/certs/server.key
