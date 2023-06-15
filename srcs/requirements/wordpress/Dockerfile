@@ -1,37 +1,26 @@
 # Use the Debian Buster Slim base image
 FROM debian:buster
 
-# Install necessary packages
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install -y \
-        curl \
-        php7.3-fpm \
-        php7.3-mysql \
-        php7.3-json \
-        php7.3-mbstring \
-        php7.3-xml \
-        php7.3-gd \
-        php7.3-curl \
-        php7.3-zip \
-        sendmail \
-        php7.3-opcache
+RUN apt-get install -y curl
+RUN apt-get install -y php7.3-fpm
+RUN apt-get install -y php7.3-json 
+RUN apt-get install -y php7.3-mysql
+RUN apt-get install -y php7.3-mbstring
+RUN apt-get install -y php7.3-xml
+RUN apt-get install -y php7.3-gd
+RUN apt-get install -y php7.3-curl
+RUN apt-get install -y php7.3-zip
+RUN apt-get install -y php7.3-opcache
+RUN apt-get install -y sendmail
 
 RUN apt-get install -y mariadb-client 
 
-# Download and extract WordPress
-RUN curl -O https://wordpress.org/latest.tar.gz --insecure && \
-    tar -xzf latest.tar.gz && \
-    rm latest.tar.gz && \
-    mkdir -p /var/www/html && \
-    mv wordpress/* /var/www/html && \
-    chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+RUN curl -O https://wordpress.org/latest.tar.gz --insecure && tar -xzf latest.tar.gz && rm latest.tar.gz && mkdir -p /var/www/html && mv wordpress/* /var/www/html && chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 
-# Configure PHP-FPM
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/
-
 
 WORKDIR /
 
