@@ -26,7 +26,7 @@ services:
     working_dir: /var/www/html
     command: bash /setup.sh
   mariadb:
-    build: 
+    build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
       args:
@@ -45,7 +45,7 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - my_network
-  
+
   nginx:
     build:
       context: ./requirements/nginx
@@ -65,19 +65,17 @@ services:
 networks:
   my_network:
 
+
 volumes:
   mariadb_data:
     driver: local
     driver_opts:
-      device: /home/gpirro/data/mariadb
+      device: /Users/gianlucapirro/inception/mariadb
       o: bind
       type: none
   wordpress_files:
     driver: local
     driver_opts:
-      device: /home/gpirro/data/wordpress
+      device: /Users/gianlucapirro/inception/wordpress
       o: bind
       type: none
-
-
-#TODO: remove passwords and stuff from wp-config.php
