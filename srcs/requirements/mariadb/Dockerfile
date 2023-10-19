@@ -1,7 +1,6 @@
-# Dockerfile for MariaDB
-
 FROM debian:buster
 
+# Install packages
 RUN apt-get update && \
     apt-get install -y mariadb-server
 
@@ -12,16 +11,19 @@ COPY start_mariadb.sh /start_mariadb.sh
 
 COPY init.sql /init_no_env.sql
 
-ARG MYSQL_ROOT_PASSWORD
-ARG MYSQL_PASSWORD
+# Set environment variables
+ARG MYSQL_ROOT_PASS
+ARG MYSQL_PASS
 ARG MYSQL_DATABASE
 ARG MYSQL_USER
 
-ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
+ENV MYSQL_ROOT_PASS=$MYSQL_ROOT_PASS
+ENV MYSQL_PASS=$MYSQL_PASS
 ENV MYSQL_DATABASE=$MYSQL_DATABASE
 ENV MYSQL_USER=$MYSQL_USER
 RUN envsubst < init_no_env.sql > init.sql
+
+# Expose port 3306
 EXPOSE 3306
 
 # Create missing directory
